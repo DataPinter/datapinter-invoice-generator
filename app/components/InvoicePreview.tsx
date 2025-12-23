@@ -3,7 +3,7 @@
 import { InvoiceData } from "../page";
 import { pdf } from "@react-pdf/renderer";
 import InvoicePDF from "./InvoicePDF";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface InvoicePreviewProps {
   invoiceData: InvoiceData;
@@ -12,32 +12,44 @@ interface InvoicePreviewProps {
 export default function InvoicePreview({ invoiceData }: InvoicePreviewProps) {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Generate PDF blob and create URL for preview
-    const generatePreview = async () => {
-      setIsGenerating(true);
-      try {
-        const blob = await pdf(<InvoicePDF invoiceData={invoiceData} />).toBlob();
-        const url = URL.createObjectURL(blob);
+    // Clear previous timer
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
 
-        // Cleanup previous URL
-        if (pdfUrl) {
-          URL.revokeObjectURL(pdfUrl);
+    // Set new timer - wait 1 second after user stops typing
+    debounceTimer.current = setTimeout(() => {
+      // Generate PDF blob and create URL for preview
+      const generatePreview = async () => {
+        setIsGenerating(true);
+        try {
+          const blob = await pdf(<InvoicePDF invoiceData={invoiceData} />).toBlob();
+          const url = URL.createObjectURL(blob);
+
+          // Cleanup previous URL
+          if (pdfUrl) {
+            URL.revokeObjectURL(pdfUrl);
+          }
+
+          setPdfUrl(url);
+        } catch (error) {
+          console.error("Error generating PDF preview:", error);
+        } finally {
+          setIsGenerating(false);
         }
+      };
 
-        setPdfUrl(url);
-      } catch (error) {
-        console.error("Error generating PDF preview:", error);
-      } finally {
-        setIsGenerating(false);
-      }
-    };
-
-    generatePreview();
+      generatePreview();
+    }, 1000); // Debounce delay: 1 second
 
     // Cleanup on unmount
     return () => {
+      if (debounceTimer.current) {
+        clearTimeout(debounceTimer.current);
+      }
       if (pdfUrl) {
         URL.revokeObjectURL(pdfUrl);
       }
