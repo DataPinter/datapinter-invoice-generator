@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   termsTitle: {
     fontSize: 10,
     fontWeight: "bold",
-    marginTop: 16,
+    marginTop: 4,
     marginBottom: 0,
   },
   termsList: {
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     lineHeight: 1.4,
   },
   signature: {
-    marginTop: 32,
+    marginTop: 24,
     position: "relative",
   },
   signatureLabel: {
