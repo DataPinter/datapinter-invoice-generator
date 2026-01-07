@@ -11,7 +11,6 @@ import {
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 
-// Register fonts from local files
 Font.register({
   family: "Calibri",
   fonts: [
@@ -25,7 +24,6 @@ Font.register({
   ],
 });
 
-// Register Arial font for company info
 Font.register({
   family: "Arial",
   fonts: [

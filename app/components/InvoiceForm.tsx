@@ -53,6 +53,16 @@ export default function InvoiceForm({
     });
   };
 
+  const handleInvoiceNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Only allow numbers
+    const numbersOnly = value.replace(/\D/g, '');
+    setInvoiceDataAction({
+      ...invoiceData,
+      noInvoice: numbersOnly ? `INV-${numbersOnly}` : '',
+    });
+  };
+
   const handleSignatoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedIndex = parseInt(e.target.value);
     setInvoiceDataAction({
@@ -153,14 +163,19 @@ export default function InvoiceForm({
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               No. Invoice <span className="text-red-500">*</span>
             </label>
-            <input
-              type="text"
-              name="noInvoice"
-              value={invoiceData.noInvoice}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm"
-              placeholder="INV-0001"
-            />
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700 text-sm font-medium">
+                INV -
+              </span>
+              <input
+                type="text"
+                name="noInvoice"
+                value={invoiceData.noInvoice.replace('INV-', '')}
+                onChange={handleInvoiceNumberChange}
+                className="w-full pl-14 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm"
+                placeholder="0001"
+              />
+            </div>
           </div>
 
           <div>
