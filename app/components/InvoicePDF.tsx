@@ -82,12 +82,12 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   clientInfo: {
-    width: "60%",
+    width: "52%",
     paddingRight: 16,
   },
   invoiceInfo: {
-    width: "40%",
-    textAlign: "left",
+    width: "48%",
+    alignItems: "flex-end",
   },
   label: {
     fontSize: 12,
@@ -98,6 +98,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "bold",
     marginBottom: 2,
+  },
+  invoiceNumber: {
+    fontSize: 12,
+    fontWeight: "bold",
+    marginBottom: 2,
+    textAlign: "right",
   },
   dateSection: {
     textAlign: "right",
@@ -481,7 +487,7 @@ const InvoicePDF: React.FC<InvoicePDFProps> = ({ invoiceData }) => {
               </Text>
             </View>
             <View style={styles.invoiceInfo}>
-              <Text style={styles.labelBold}>
+              <Text style={styles.invoiceNumber} wrap={false}>
                 No. Invoice :{" "}
                 {invoiceData.noInvoice && invoiceData.userId
                   ? `${invoiceData.noInvoice}/${invoiceData.userId}/SPP/${currentYear}`
