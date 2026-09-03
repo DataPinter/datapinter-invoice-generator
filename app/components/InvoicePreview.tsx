@@ -15,21 +15,17 @@ export default function InvoicePreview({ invoiceData }: InvoicePreviewProps) {
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Clear previous timer
     if (debounceTimer.current) {
       clearTimeout(debounceTimer.current);
     }
 
-    // Set new timer - wait 1 second after user stops typing
     debounceTimer.current = setTimeout(() => {
-      // Generate PDF blob and create URL for preview
       const generatePreview = async () => {
         setIsGenerating(true);
         try {
           const blob = await pdf(<InvoicePDF invoiceData={invoiceData} />).toBlob();
           const url = URL.createObjectURL(blob);
 
-          // Cleanup previous URL
           if (pdfUrl) {
             URL.revokeObjectURL(pdfUrl);
           }
@@ -43,9 +39,8 @@ export default function InvoicePreview({ invoiceData }: InvoicePreviewProps) {
       };
 
       generatePreview();
-    }, 1000); // Debounce delay: 1 second
+    }, 1000);
 
-    // Cleanup on unmount
     return () => {
       if (debounceTimer.current) {
         clearTimeout(debounceTimer.current);
@@ -58,24 +53,19 @@ export default function InvoicePreview({ invoiceData }: InvoicePreviewProps) {
 
   const handleDownloadPDF = async () => {
     try {
-      // Generate PDF document using react-pdf/renderer
       const blob = await pdf(<InvoicePDF invoiceData={invoiceData} />).toBlob();
 
-      // Create download link
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
 
-      // Generate filename
       const invoiceNo = invoiceData.noInvoice || "Draft";
       const companyName = invoiceData.namaPerusahaan || "Contoh Perusahaan";
       link.download = `_${invoiceNo} ${companyName}.pdf`;
 
-      // Trigger download
       document.body.appendChild(link);
       link.click();
 
-      // Cleanup
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
     } catch (error) {

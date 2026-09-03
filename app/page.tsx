@@ -8,6 +8,7 @@ export interface InvoiceData {
   namaPerusahaan: string;
   alamatPerusahaan: string;
   noInvoice: string;
+  tanggalInvoice: string;
   userId: string;
   usePph: boolean;
   jenisItem: "paket" | "quota";
@@ -16,10 +17,11 @@ export interface InvoiceData {
   durasi: string;
   penandatangan: {
     nama: string;
-    jabatan: string;
   };
   statusPembayaran: "belum_bayar" | "sudah_bayar";
   tanggalPembayaran?: string;
+  emailPenagihan: string;
+  showPaymentDateInStatus: boolean;
 }
 
 export default function Home() {
@@ -27,18 +29,20 @@ export default function Home() {
     namaPerusahaan: "",
     alamatPerusahaan: "",
     noInvoice: "",
+    tanggalInvoice: "",
     userId: "",
-    usePph: true,
+    usePph: false,
     jenisItem: "paket",
     paket: "DataPinter - Dasar Monthly",
     hargaPerUnit: 299000,
     durasi: "1 bulan",
     penandatangan: {
-      nama: "Erlin Rodame Shinta",
-      jabatan: "Head Marketing",
+      nama: "Barron Konstantin",
     },
     statusPembayaran: "belum_bayar",
     tanggalPembayaran: "",
+    emailPenagihan: "",
+    showPaymentDateInStatus: true,
   });
 
   const [showPreview, setShowPreview] = useState(false);

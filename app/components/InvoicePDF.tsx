@@ -40,7 +40,7 @@ Font.register({
 const styles = StyleSheet.create({
   page: {
     paddingTop: 32,
-    paddingBottom: 80,
+    paddingBottom: 56,
     paddingHorizontal: 56,
     fontSize: 10,
     fontFamily: "Calibri",
@@ -64,11 +64,14 @@ const styles = StyleSheet.create({
   divider: {
     borderBottomWidth: 1,
     borderBottomColor: "#9ca3af",
-    marginTop: 8,
-    marginBottom: 8,
+    marginTop: 2,
+    marginBottom: 4,
+  },
+  invoiceBody: {
+    fontFamily: "Times-Roman",
   },
   invoiceTitle: {
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 16,
@@ -87,18 +90,20 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   label: {
-    fontSize: 10,
+    fontSize: 12,
     width: "71%",
+    lineHeight: 1.5,
   },
   labelBold: {
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
+    marginBottom: 2,
   },
   dateSection: {
     textAlign: "right",
     marginTop: 8,
     marginBottom: 2,
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
   },
   table: {
@@ -117,54 +122,54 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderBottomWidth: 1,
     borderColor: "#000000",
-    minHeight: 28,
+    minHeight: 22,
   },
   tableCell: {
-    paddingVertical: 8,
+    paddingVertical: 3,
     paddingHorizontal: 4,
-    fontSize: 10,
+    fontSize: 12,
     borderRightWidth: 1,
     borderColor: "#000000",
     justifyContent: "center",
   },
   tableCellNo: {
-    paddingVertical: 8,
+    paddingVertical: 3,
     paddingHorizontal: 8,
-    fontSize: 10,
+    fontSize: 12,
     borderRightWidth: 1,
     borderColor: "#000000",
     justifyContent: "center",
     textAlign: "center",
   },
   tableCellLast: {
-    paddingVertical: 8,
+    paddingVertical: 3,
     paddingHorizontal: 4,
-    fontSize: 10,
+    fontSize: 12,
     justifyContent: "center",
     textAlign: "center",
   },
   tableCellBoldHeader: {
-    paddingVertical: 8,
+    paddingVertical: 4,
     paddingHorizontal: 0,
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
     borderColor: "#000000",
     justifyContent: "center",
     textAlign: "center",
   },
   tableCellBold: {
-    paddingVertical: 8,
+    paddingVertical: 4,
     paddingHorizontal: 4,
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
     borderColor: "#000000",
     justifyContent: "center",
     textAlign: "center",
   },
   tableCellBoldLast: {
-    paddingVertical: 8,
+    paddingVertical: 4,
     paddingHorizontal: 4,
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
     justifyContent: "center",
     textAlign: "center",
@@ -174,8 +179,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   colItem: {
-    width: "37%",
+    width: "34%",
     textAlign: "left",
+  },
+  colItemQuota: {
+    width: "32%",
   },
   colHeadNo: {
     width: "8%",
@@ -183,42 +191,57 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   colHeadItem: {
-    width: "37%",
+    width: "34%",
     textAlign: "center",
     fontWeight: "600",
+  },
+  colHeadItemQuota: {
+    width: "32%",
   },
   colHeadDuration: {
-    width: "20%",
+    width: "16%",
     textAlign: "center",
     fontWeight: "600",
+  },
+  colHeadDurationQuota: {
+    width: "20%",
   },
   colHeadPrice: {
-    width: "17.5%",
+    width: "22%",
     textAlign: "center",
     fontWeight: "600",
   },
-  colDuration: {
+  colHeadPriceQuota: {
     width: "20%",
+  },
+  colDuration: {
+    width: "16%",
     textAlign: "center",
+  },
+  colDurationQuota: {
+    width: "20%",
   },
   colPrice: {
-    width: "17.5%",
+    width: "22%",
     textAlign: "center",
   },
+  colPriceQuota: {
+    width: "20%",
+  },
   colTotal: {
-    width: "17.5%",
+    width: "20%",
     textAlign: "center",
   },
   totalRow: {
     flexDirection: "row",
+    width: "100%",
     borderColor: "#000000",
-    justifyContent: "flex-end",
   },
   totalLabel: {
-    width: "37.55%",
-    paddingVertical: 8,
+    width: "42%",
+    paddingVertical: 4,
     paddingHorizontal: 16,
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
     textAlign: "center",
     borderRightWidth: 1,
@@ -226,39 +249,74 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: "#000000",
   },
+  totalLabelQuota: {
+    width: "40%",
+  },
   totalValue: {
-    width: "17.62%",
-    paddingVertical: 8,
+    width: "58%",
+    paddingVertical: 4,
     paddingHorizontal: 16,
-    fontSize: 10,
+    fontSize: 12,
     borderRightWidth: 1,
     borderBottomWidth: 1,
+    borderColor: "#000000",
     fontWeight: "bold",
     textAlign: "center",
   },
+  totalValueQuota: {
+    width: "60%",
+  },
   paymentInfo: {
-    fontSize: 10,
-    marginBottom: 4,
+    fontSize: 12,
+    marginBottom: 8,
   },
   bankTable: {
     marginTop: 0,
-    marginBottom: 0,
-    gap: 4,
+    marginBottom: 20,
+    gap: 6,
   },
   bankRow: {
     flexDirection: "row",
     marginBottom: 0,
   },
   bankLabel: {
-    width: 128,
-    fontSize: 10,
+    width: 120,
+    fontSize: 12,
   },
   bankValue: {
-    fontSize: 10,
+    fontSize: 12,
     flex: 1,
   },
+  bankAddressValue: {
+    fontSize: 12,
+    flex: 1,
+    lineHeight: 1.5,
+  },
+  publisherName: {
+    fontSize: 12,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  billedSection: {
+    marginTop: 16,
+    marginBottom: 20,
+    gap: 8,
+  },
+  billedTitle: {
+    fontSize: 12,
+    marginBottom: 4,
+  },
+  billedName: {
+    fontSize: 12,
+    fontWeight: "bold",
+    marginBottom: 12,
+  },
+  billedEmail: {
+    color: "#075f73",
+    textDecoration: "underline",
+  },
   termsTitle: {
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
     marginTop: 4,
     marginBottom: 0,
@@ -269,7 +327,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   termsItem: {
-    fontSize: 10,
+    fontSize: 12,
     marginBottom: 0,
     lineHeight: 1.4,
   },
@@ -278,7 +336,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   signatureLabel: {
-    fontSize: 10,
+    fontSize: 12,
     marginBottom: 0,
     position: "relative",
     zIndex: 10,
@@ -286,23 +344,24 @@ const styles = StyleSheet.create({
   signatureImage: {
     width: 120,
     height: "auto",
-    marginTop: -2,
+    marginTop: -32,
     marginBottom: 0,
+    marginRight: 12,
     marginLeft: 0,
   },
   signatureName: {
-    fontSize: 10,
-    textDecoration: "underline",
-    marginTop: -8,
+    fontSize: 12,
+    fontWeight: "bold",
+    marginTop: 4,
   },
   signatureTitle: {
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
     marginTop: 2,
   },
   signatureNameOnly: {
-    fontSize: 10,
-    textDecoration: "underline",
+    fontSize: 12,
+    fontWeight: "bold",
     marginTop: 64,
   },
 });
@@ -311,6 +370,7 @@ interface InvoiceData {
   namaPerusahaan: string;
   alamatPerusahaan: string;
   noInvoice: string;
+  tanggalInvoice?: string;
   userId: string;
   usePph: boolean;
   jenisItem: "paket" | "quota";
@@ -319,10 +379,11 @@ interface InvoiceData {
   durasi: string;
   penandatangan: {
     nama: string;
-    jabatan: string;
   };
   statusPembayaran: "belum_bayar" | "sudah_bayar";
   tanggalPembayaran?: string;
+  emailPenagihan?: string;
+  showPaymentDateInStatus?: boolean;
 }
 
 interface InvoicePDFProps {
@@ -330,16 +391,37 @@ interface InvoicePDFProps {
 }
 
 const formatCurrency = (amount: number): string => {
-  return new Intl.NumberFormat("id-ID", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "IDR",
     minimumFractionDigits: 0,
-  }).format(amount);
+  })
+    .format(amount)
+    .replace("IDR", "Rp");
+};
+
+const formatInvoiceDate = (date?: string): string => {
+  if (!date) {
+    return format(new Date(), "d MMMM yyyy", { locale: id });
+  }
+
+  const [year, month, day] = date.split("-").map(Number);
+  return format(new Date(year, month - 1, day), "d MMMM yyyy", {
+    locale: id,
+  });
+};
+
+const formatDuration = (duration: string): string => {
+  return duration.replace(/\b(bulan|tahun)\b/g, (value) => {
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  });
 };
 
 const InvoicePDF: React.FC<InvoicePDFProps> = ({ invoiceData }) => {
-  const currentDate = format(new Date(), "dd MMMM yyyy", { locale: id });
-  const currentYear = format(new Date(), "yyyy");
+  const invoiceDate = formatInvoiceDate(invoiceData.tanggalInvoice);
+  const currentYear = invoiceData.tanggalInvoice
+    ? invoiceData.tanggalInvoice.slice(0, 4)
+    : format(new Date(), "yyyy");
 
   const calculatePph = (amount: number) => {
     return amount * 0.02;
@@ -353,6 +435,14 @@ const InvoicePDF: React.FC<InvoicePDFProps> = ({ invoiceData }) => {
     }
     return harga;
   };
+
+  const paymentStatusLabel =
+    invoiceData.statusPembayaran === "sudah_bayar" ? "PAID" : "UNPAID";
+  const paymentStatusText =
+    invoiceData.showPaymentDateInStatus && invoiceData.tanggalPembayaran
+      ? `${paymentStatusLabel} - ${formatInvoiceDate(invoiceData.tanggalPembayaran)}`
+      : paymentStatusLabel;
+  const isQuotaItem = invoiceData.jenisItem === "quota";
 
   return (
     <Document>
@@ -373,171 +463,266 @@ const InvoicePDF: React.FC<InvoicePDFProps> = ({ invoiceData }) => {
 
         <View style={styles.divider} />
 
-        {/* Invoice Title */}
-        <Text style={styles.invoiceTitle}>INVOICE</Text>
+        <View style={styles.invoiceBody}>
+          {/* Invoice Title */}
+          <Text style={styles.invoiceTitle}>INVOICE</Text>
 
-        {/* Client and Invoice Info */}
-        <View style={styles.headerSection}>
-          <View style={styles.clientInfo}>
-            <Text style={styles.label}>
-              <Text style={styles.labelBold}>Kepada Yth. :</Text>
-            </Text>
-            <Text style={styles.labelBold}>
-              {invoiceData.namaPerusahaan || "[Nama Perusahaan]"}
-            </Text>
-            <Text style={styles.label}>
-              {invoiceData.alamatPerusahaan || "[Alamat Perusahaan]"}
-            </Text>
-          </View>
-          <View style={styles.invoiceInfo}>
-            <Text style={styles.labelBold}>
-              No. Invoice :{" "}
-              {invoiceData.noInvoice && invoiceData.userId
-                ? `${invoiceData.noInvoice}/${invoiceData.userId}/SPP/${currentYear}`
-                : "[No. Invoice]"}
-            </Text>
-          </View>
-        </View>
-
-        <Text style={styles.dateSection}>Tanggal: {currentDate}</Text>
-
-        {/* Items Table */}
-        <View style={styles.table}>
-          <View style={styles.tableHeader}>
-            <Text style={[styles.tableCellNo, styles.colHeadNo]}>No.</Text>
-            <Text style={[styles.tableCell, styles.colHeadItem]}>Item</Text>
-            <Text style={[styles.tableCell, styles.colHeadDuration]}>
-              {invoiceData.jenisItem === "paket" ? "Durasi" : "Jumlah"}
-            </Text>
-            <Text style={[styles.tableCell, styles.colHeadPrice]}>
-              Harga Per-unit
-            </Text>
-            <Text style={[styles.tableCellBoldLast, styles.colTotal]}>
-              Total Jumlah
-            </Text>
+          {/* Client and Invoice Info */}
+          <View style={styles.headerSection}>
+            <View style={styles.clientInfo}>
+              <Text style={styles.label}>
+                <Text style={styles.labelBold}>Kepada Yth. :</Text>
+              </Text>
+              <Text style={styles.labelBold}>
+                {invoiceData.namaPerusahaan || "[Nama Perusahaan]"}
+              </Text>
+              <Text style={styles.label}>
+                {invoiceData.alamatPerusahaan || "[Alamat atau PIC Perusahaan]"}
+              </Text>
+            </View>
+            <View style={styles.invoiceInfo}>
+              <Text style={styles.labelBold}>
+                No. Invoice :{" "}
+                {invoiceData.noInvoice && invoiceData.userId
+                  ? `${invoiceData.noInvoice}/${invoiceData.userId}/SPP/${currentYear}`
+                  : "[No. Invoice]"}
+              </Text>
+            </View>
           </View>
 
-          <View style={styles.tableRow}>
-            <Text style={[styles.tableCellNo, styles.colNo]}>1.</Text>
-            <Text style={[styles.tableCell, styles.colItem]}>
-              {invoiceData.paket || "DataPinter - Dasar Monthly"}
-            </Text>
-            <Text style={[styles.tableCell, styles.colDuration]}>
-              {invoiceData.durasi}
-            </Text>
-            <Text style={[styles.tableCell, styles.colPrice]}>
-              {formatCurrency(invoiceData.hargaPerUnit)}
-            </Text>
-            <Text style={[styles.tableCellLast, styles.colTotal]}>
-              {formatCurrency(invoiceData.hargaPerUnit)}
-            </Text>
-          </View>
+          <Text style={styles.dateSection}>Tanggal: {invoiceDate}</Text>
 
-          {invoiceData.usePph && (
+          {/* Items Table */}
+          <View style={styles.table}>
+            <View style={styles.tableHeader}>
+              <Text style={[styles.tableCellNo, styles.colHeadNo]}>No.</Text>
+              <Text
+                style={[
+                  styles.tableCell,
+                  styles.colHeadItem,
+                  isQuotaItem ? styles.colHeadItemQuota : {},
+                ]}
+                wrap={false}
+              >
+                Item
+              </Text>
+              <Text
+                style={[
+                  styles.tableCell,
+                  styles.colHeadDuration,
+                  isQuotaItem ? styles.colHeadDurationQuota : {},
+                ]}
+                wrap={false}
+              >
+                Jumlah
+              </Text>
+              <Text
+                style={[
+                  styles.tableCell,
+                  styles.colHeadPrice,
+                  isQuotaItem ? styles.colHeadPriceQuota : {},
+                ]}
+                wrap={false}
+              >
+                Harga Per-Unit
+              </Text>
+              <Text style={[styles.tableCellBoldLast, styles.colTotal]} wrap={false}>
+                Total Jumlah
+              </Text>
+            </View>
+
             <View style={styles.tableRow}>
-              <Text style={[styles.tableCellNo, styles.colNo]}>2.</Text>
-              <Text style={[styles.tableCell, styles.colItem]}>
-                Tarif Potongan PPh 23 (2%)
+              <Text style={[styles.tableCellNo, styles.colNo]}>1.</Text>
+              <Text
+                style={[
+                  styles.tableCell,
+                  styles.colItem,
+                  isQuotaItem ? styles.colItemQuota : {},
+                ]}
+                wrap={false}
+              >
+                {invoiceData.paket || "DataPinter - Dasar Monthly"}
               </Text>
-              <Text style={[styles.tableCell, styles.colDuration]}>2%</Text>
-              <Text style={[styles.tableCell, styles.colPrice]}>
-                {formatCurrency(calculatePph(invoiceData.hargaPerUnit))}
+              <Text
+                style={[
+                  styles.tableCell,
+                  styles.colDuration,
+                  isQuotaItem ? styles.colDurationQuota : {},
+                ]}
+                wrap={false}
+              >
+                {formatDuration(invoiceData.durasi)}
               </Text>
-              <Text style={[styles.tableCellLast, styles.colTotal]}>
-                {formatCurrency(calculatePph(invoiceData.hargaPerUnit))}
+              <Text
+                style={[
+                  styles.tableCell,
+                  styles.colPrice,
+                  isQuotaItem ? styles.colPriceQuota : {},
+                ]}
+                wrap={false}
+              >
+                {formatCurrency(invoiceData.hargaPerUnit)}
               </Text>
+              <Text style={[styles.tableCellLast, styles.colTotal]} wrap={false}>
+                {formatCurrency(invoiceData.hargaPerUnit)}
+              </Text>
+            </View>
+
+            {invoiceData.usePph && (
+              <View style={styles.tableRow}>
+                <Text style={[styles.tableCellNo, styles.colNo]}>2.</Text>
+                <Text
+                  style={[
+                    styles.tableCell,
+                    styles.colItem,
+                    isQuotaItem ? styles.colItemQuota : {},
+                  ]}
+                >
+                  Tarif Potongan PPh 23 (2%)
+                </Text>
+                <Text
+                  style={[
+                    styles.tableCell,
+                    styles.colDuration,
+                    isQuotaItem ? styles.colDurationQuota : {},
+                  ]}
+                  wrap={false}
+                >
+                  2%
+                </Text>
+                <Text
+                  style={[
+                    styles.tableCell,
+                    styles.colPrice,
+                    isQuotaItem ? styles.colPriceQuota : {},
+                  ]}
+                  wrap={false}
+                >
+                  {formatCurrency(calculatePph(invoiceData.hargaPerUnit))}
+                </Text>
+                <Text style={[styles.tableCellLast, styles.colTotal]} wrap={false}>
+                  {formatCurrency(calculatePph(invoiceData.hargaPerUnit))}
+                </Text>
+              </View>
+            )}
+
+            <View style={styles.totalRow}>
+              <Text
+                style={[
+                  styles.totalLabel,
+                  isQuotaItem ? styles.totalLabelQuota : {},
+                ]}
+              >
+                Jumlah Pembayaran
+              </Text>
+              <Text
+                style={[
+                  styles.totalValue,
+                  isQuotaItem ? styles.totalValueQuota : {},
+                ]}
+                wrap={false}
+              >
+                {formatCurrency(calculateTotal())}
+              </Text>
+            </View>
+            <View style={styles.totalRow}>
+              <Text
+                style={[
+                  styles.totalLabel,
+                  isQuotaItem ? styles.totalLabelQuota : {},
+                ]}
+              >
+                Status Pembayaran
+              </Text>
+              <Text
+                style={[
+                  styles.totalValue,
+                  isQuotaItem ? styles.totalValueQuota : {},
+                ]}
+                wrap={false}
+              >
+                {paymentStatusText}
+              </Text>
+            </View>
+          </View>
+
+          {/* Publisher Info */}
+          <Text style={styles.paymentInfo}>Diterbitkan Oleh,</Text>
+          <Text style={styles.publisherName}>PT SOLUSI PENJUAL PINTAR</Text>
+
+          <View style={styles.bankTable}>
+            <View style={styles.bankRow}>
+              <Text style={styles.bankLabel}>Alamat</Text>
+              <Text style={styles.bankAddressValue}>
+                : KCU GADING SERPONG, Perumahan Gading Serpong,{"\n"}  Jl.
+                Gading Serpong Boulevard No.001, Kabupaten Tangerang, 15810
+              </Text>
+            </View>
+            <View style={styles.bankRow}>
+              <Text style={styles.bankLabel}>No. Rekening BCA</Text>
+              <Text style={styles.bankValue}>: 8832052000</Text>
+            </View>
+            <View style={styles.bankRow}>
+              <Text style={styles.bankLabel}>No. NPWP</Text>
+              <Text style={styles.bankValue}>: 43449169241600</Text>
+            </View>
+          </View>
+
+          {invoiceData.statusPembayaran === "sudah_bayar" && (
+            <View style={styles.billedSection}>
+              <Text style={styles.billedTitle}>Ditagihkan oleh,</Text>
+              <Text style={styles.billedName}>
+                {invoiceData.namaPerusahaan || "[Nama Perusahaan]"}
+              </Text>
+              <View style={styles.bankRow}>
+                <Text style={styles.bankLabel}>Email</Text>
+                <Text style={styles.bankValue}>
+                  :{" "}
+                  <Text style={styles.billedEmail}>
+                    {invoiceData.emailPenagihan || "[Email Penagihan]"}
+                  </Text>
+                </Text>
+              </View>
             </View>
           )}
 
-          <View style={styles.totalRow}>
-            <Text style={styles.totalLabel}>Total Pembayaran</Text>
-            <Text style={styles.totalValue}>
-              {formatCurrency(calculateTotal())}
-            </Text>
-          </View>
-        </View>
-
-        {/* Payment Info */}
-        <Text style={styles.paymentInfo}>
-          Pembayaran dapat dilakukan dalam Rupiah ke rekening berikut ini :
-        </Text>
-
-        <View style={styles.bankTable}>
-          <View style={styles.bankRow}>
-            <Text style={styles.bankLabel}>Nama Rekening</Text>
-            <Text style={styles.bankValue}>: PT SOLUSI PENJUAL PINTAR</Text>
-          </View>
-          <View style={styles.bankRow}>
-            <Text style={styles.bankLabel}>Bank</Text>
-            <Text style={styles.bankValue}>: BCA</Text>
-          </View>
-          <View style={styles.bankRow}>
-            <Text style={styles.bankLabel}>Alamat</Text>
-            <Text style={styles.bankValue}>
-              : KCU GADING SERPONG, Perumahan Gading Serpong,{"\n"}  Jl. Gading
-              Serpong Boulevard No.001, Kabupaten Tangerang, 15810
-            </Text>
-          </View>
-          <View style={styles.bankRow}>
-            <Text style={styles.bankLabel}>No. Rekening</Text>
-            <Text style={styles.bankValue}>: 8832052000</Text>
-          </View>
-          <View style={styles.bankRow}>
-            <Text style={styles.bankLabel}>No. NPWP</Text>
-            <Text style={styles.bankValue}>: 43449169241600</Text>
-          </View>
-        </View>
-
-        <Text style={styles.termsTitle}>*Terms & conditions :</Text>
-        {invoiceData.statusPembayaran === "belum_bayar" ? (
-          <View style={styles.termsList}>
-            <Text style={styles.termsItem}>
-              - Penawaran ini berlaku 7 hari dari tanggal Invoice diterbitkan.
-            </Text>
-            <Text style={styles.termsItem}>
-              - Datapinter terdaftar sebagai non PKP, maka tidak ada potongan
-              PPn.
-            </Text>
-            <Text style={styles.termsItem}>
-              - Seluruh pembayaran yang telah dilakukan tidak dapat
-              dikembalikan.
-            </Text>
-          </View>
-        ) : (
-          <View style={styles.termsList}>
-            <Text style={styles.termsItem}>
-              - Pembayaran telah dilakukan pada{" "}
-              {invoiceData.tanggalPembayaran
-                ? format(new Date(invoiceData.tanggalPembayaran), "dd MMMM yyyy", {
-                  locale: id,
-                })
-                : "[Tanggal Pembayaran]"}
-            </Text>
-          </View>
-        )}
-
-        <View style={styles.signature}>
-          <Text style={styles.signatureLabel}>Hormat kami,</Text>
-          {invoiceData.penandatangan.jabatan === "Head Marketing" ? (
+          {invoiceData.statusPembayaran === "belum_bayar" && (
             <View>
-              <Image src="/e-signature.png" style={styles.signatureImage} />
-              <Text style={styles.signatureName}>
-                {invoiceData.penandatangan.nama}
-              </Text>
-              <Text style={styles.signatureTitle}>
-                {invoiceData.penandatangan.jabatan}
-              </Text>
-            </View>
-          ) : (
-            <View>
-              <Text style={styles.signatureNameOnly}>
-                {invoiceData.penandatangan.nama}
-              </Text>
-              <Text style={styles.signatureTitle}>
-                {invoiceData.penandatangan.jabatan}
-              </Text>
+              <Text style={styles.termsTitle}>*Terms & conditions :</Text>
+              <View style={styles.termsList}>
+                <Text style={styles.termsItem}>
+                  - Penawaran ini berlaku 7 hari dari tanggal Invoice
+                  diterbitkan.
+                </Text>
+                <Text style={styles.termsItem}>
+                  - Datapinter terdaftar sebagai non PKP, maka tidak ada
+                  potongan PPn.
+                </Text>
+                <Text style={styles.termsItem}>
+                  - Seluruh pembayaran yang telah dilakukan tidak dapat
+                  dikembalikan.
+                </Text>
+              </View>
             </View>
           )}
+
+          <View style={styles.signature}>
+            <Text style={styles.signatureLabel}>Hormat kami,</Text>
+            {invoiceData.penandatangan.nama === "Barron Konstantin" ? (
+              <View>
+                <Image src="/e-signature-new.png" style={styles.signatureImage} />
+                <Text style={styles.signatureName}>
+                  {invoiceData.penandatangan.nama}
+                </Text>
+              </View>
+            ) : (
+              <View>
+                <Text style={styles.signatureNameOnly}>
+                  {invoiceData.penandatangan.nama}
+                </Text>
+              </View>
+            )}
+          </View>
         </View>
       </Page>
     </Document>

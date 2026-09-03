@@ -12,23 +12,21 @@ export default function InvoiceForm({
   setInvoiceDataAction,
 }: InvoiceFormProps) {
   const signatories = [
-    { nama: "Marcel Christianis", jabatan: "Chief Technology Officer" },
-    { nama: "Barron Li", jabatan: "Chief Marketing Officer" },
-    { nama: "Erlin Rodame Shinta", jabatan: "Head Marketing" },
+    { nama: "Marcel Christianis" },
+    { nama: "Barron Konstantin" },
   ];
 
   const paketList = [
-    { nama: "DataPinter - Dasar Monthly", harga: 299000, durasi: "1 bulan" },
-    { nama: "DataPinter - Pinter Monthly", harga: 499000, durasi: "1 bulan" },
-    { nama: "DataPinter - Jenius Monthly", harga: 2999000, durasi: "1 bulan" },
-    { nama: "DataPinter - Enterprise Monthly", harga: 19000000, durasi: "1 bulan" },
-    { nama: "DataPinter - Dasar Yearly", harga: 1790000, durasi: "1 tahun" },
-    { nama: "DataPinter - Pinter Yearly", harga: 4990000, durasi: "1 tahun" },
-    { nama: "DataPinter - Jenius Yearly", harga: 9990000, durasi: "1 tahun" },
-    { nama: "DataPinter - Enterprise Yearly", harga: 190000000, durasi: "1 tahun" },
+    { nama: "DataPinter - Go Monthly", harga: 99000, durasi: "1 Bulan" },
+    { nama: "DataPinter - Dasar Monthly", harga: 299000, durasi: "1 Bulan" },
+    { nama: "DataPinter - Pinter Monthly", harga: 499000, durasi: "1 Bulan" },
+    { nama: "DataPinter - Jenius Monthly", harga: 2999000, durasi: "1 Bulan" },
+    { nama: "DataPinter - Go Yearly", harga: 82500 * 12, durasi: "1 Tahun" },
+    { nama: "DataPinter - Dasar Yearly", harga: 1790000, durasi: "1 Tahun" },
+    { nama: "DataPinter - Pinter Yearly", harga: 4990000, durasi: "1 Tahun" },
+    { nama: "DataPinter - Jenius Yearly", harga: 29990000, durasi: "1 Tahun" },
   ];
 
-  // Generate quota download list: 10.000 - 1.000.000 produk
   const quotaList: Array<{ nama: string; harga: number; durasi: string }> = [];
   for (let i = 10000; i <= 1000000; i += 10000) {
     quotaList.push({
@@ -154,7 +152,7 @@ export default function InvoiceForm({
             onChange={handleChange}
             rows={3}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm resize-none"
-            placeholder="Jl. HR. Rasuna Said No. 38, Panguggugaan Utara, Pinang Kota Tangerang, Banten, 15810"
+            placeholder="Jl. HR. Rasuna Said No. 38, Panguggugaan Utara, Pinang Kota Tangerang, Banten, 15810 atau PIC : Barron Konstantin - (08XXXXXXXXXX)"
           />
         </div>
 
@@ -191,6 +189,19 @@ export default function InvoiceForm({
               placeholder="191912"
             />
           </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Tanggal Invoice
+          </label>
+          <input
+            type="date"
+            name="tanggalInvoice"
+            value={invoiceData.tanggalInvoice}
+            onChange={handleChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm"
+          />
         </div>
 
         <div>
@@ -297,17 +308,53 @@ export default function InvoiceForm({
         </div>
 
         {invoiceData.statusPembayaran === "sudah_bayar" && (
-          <div className="pt-4 border-t border-gray-200">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Tanggal Pembayaran <span className="text-red-500">*</span>
+          <div className="pt-4 border-t border-gray-200 space-y-3">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Tanggal Pembayaran <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="date"
+                name="tanggalPembayaran"
+                value={invoiceData.tanggalPembayaran}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Email Penagihan
+              </label>
+              <input
+                type="email"
+                name="emailPenagihan"
+                value={invoiceData.emailPenagihan}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm"
+                placeholder="email@perusahaan.com"
+              />
+            </div>
+
+            <label className="flex items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 cursor-pointer group">
+              <div className="pt-0.5">
+                <input
+                  type="checkbox"
+                  name="showPaymentDateInStatus"
+                  checked={invoiceData.showPaymentDateInStatus}
+                  onChange={handleChange}
+                  className="h-5 w-5 border-gray-300 rounded cursor-pointer accent-orange-600"
+                />
+              </div>
+              <div>
+                <span className="block text-sm font-semibold text-gray-700 group-hover:text-orange-600 transition-colors">
+                  Tambahkan tanggal di cell Status Pembayaran
+                </span>
+                <span className="block text-xs text-gray-500 mt-0.5">
+                  Contoh: PAID - 3 September 2026
+                </span>
+              </div>
             </label>
-            <input
-              type="date"
-              name="tanggalPembayaran"
-              value={invoiceData.tanggalPembayaran}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm"
-            />
           </div>
         )}
 
@@ -324,7 +371,7 @@ export default function InvoiceForm({
           >
             {signatories.map((signatory, index) => (
               <option key={index} value={index}>
-                {signatory.nama} - {signatory.jabatan}
+                {signatory.nama}
               </option>
             ))}
           </select>
