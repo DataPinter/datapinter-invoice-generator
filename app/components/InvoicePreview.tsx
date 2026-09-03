@@ -12,44 +12,54 @@ interface InvoicePreviewProps {
 export default function InvoicePreview({ invoiceData }: InvoicePreviewProps) {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
-  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+  const pdfUrlRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (debounceTimer.current) {
-      clearTimeout(debounceTimer.current);
-    }
+    let isCurrent = true;
+    let nextUrl: string | null = null;
 
-    debounceTimer.current = setTimeout(() => {
-      const generatePreview = async () => {
-        setIsGenerating(true);
-        try {
-          const blob = await pdf(<InvoicePDF invoiceData={invoiceData} />).toBlob();
-          const url = URL.createObjectURL(blob);
+    const generatePreview = async () => {
+      setIsGenerating(true);
+      try {
+        const blob = await pdf(<InvoicePDF invoiceData={invoiceData} />).toBlob();
+        nextUrl = URL.createObjectURL(blob);
 
-          if (pdfUrl) {
-            URL.revokeObjectURL(pdfUrl);
+        if (!isCurrent) {
+          URL.revokeObjectURL(nextUrl);
+          return;
+        }
+
+        setPdfUrl((currentUrl) => {
+          if (currentUrl) {
+            URL.revokeObjectURL(currentUrl);
           }
 
-          setPdfUrl(url);
-        } catch (error) {
-          console.error("Error generating PDF preview:", error);
-        } finally {
+          pdfUrlRef.current = nextUrl;
+          return nextUrl;
+        });
+      } catch (error) {
+        console.error("Error generating PDF preview:", error);
+      } finally {
+        if (isCurrent) {
           setIsGenerating(false);
         }
-      };
-
-      generatePreview();
-    }, 1000);
-
-    return () => {
-      if (debounceTimer.current) {
-        clearTimeout(debounceTimer.current);
-      }
-      if (pdfUrl) {
-        URL.revokeObjectURL(pdfUrl);
       }
     };
+
+    generatePreview();
+
+    return () => {
+      isCurrent = false;
+    };
   }, [invoiceData]);
+
+  useEffect(() => {
+    return () => {
+      if (pdfUrlRef.current) {
+        URL.revokeObjectURL(pdfUrlRef.current);
+      }
+    };
+  }, []);
 
   const handleDownloadPDF = async () => {
     try {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InvoiceForm from "./components/InvoiceForm";
 import InvoicePreview from "./components/InvoicePreview";
 
@@ -22,6 +22,22 @@ export interface InvoiceData {
   tanggalPembayaran?: string;
   emailPenagihan: string;
   showPaymentDateInStatus: boolean;
+}
+
+const PREVIEW_DEBOUNCE_MS = 700;
+
+function useDebouncedValue<T>(value: T, delay: number) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => window.clearTimeout(timer);
+  }, [value, delay]);
+
+  return debouncedValue;
 }
 
 export default function Home() {
@@ -50,6 +66,10 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const debouncedInvoiceData = useDebouncedValue(
+    invoiceData,
+    PREVIEW_DEBOUNCE_MS
+  );
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -158,7 +178,7 @@ export default function Home() {
             </div>
 
             <div className={`${!showPreview ? 'hidden lg:block' : 'block'}`}>
-              <InvoicePreview invoiceData={invoiceData} />
+              <InvoicePreview invoiceData={debouncedInvoiceData} />
             </div>
           </div>
         </div>
