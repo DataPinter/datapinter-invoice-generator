@@ -55,7 +55,7 @@ export default function Home() {
     penandatangan: {
       nama: "Barron Konstantin",
     },
-    statusPembayaran: "belum_bayar",
+    statusPembayaran: "sudah_bayar",
     tanggalPembayaran: "",
     emailPenagihan: "",
     showPaymentDateInStatus: true,
